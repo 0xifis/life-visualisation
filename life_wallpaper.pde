@@ -1,9 +1,6 @@
 color red = color(192, 0, 24);
-//color bg = color(154, 201, 254);
-//color red = color(0);
 color white = color(180);
 color bg = color(255);
-
 
 int dotCount = 0;
 int totalWeeks, weeksLived, x, y, padding, marginx, marginy, radius;
@@ -14,11 +11,11 @@ void setup() {
   ellipseMode(RADIUS);
   noStroke();
   frameRate(1000);
- 
+
 
   totalWeeks = totalWeeks(82);
   weeksLived = weeksLived(31, 8, 1995);
-  
+
   marginx = floor(0.15*width);
   marginy = floor(0.15*height);
   int p = floor(sqrt((0.7*width*0.7*height)/(totalWeeks*25)));
@@ -40,10 +37,10 @@ void draw() {
   }
   if (dotCount < totalWeeks) {
     drawDot();
-  } 
+  }
   else {
     writeText();
-    save("life3.jpg");   
+    save("life3.jpg");
     noLoop();
   }
   dotCount++;
@@ -58,7 +55,7 @@ void reset() {
 void writeText() {
   fill(white);
   textAlign(CENTER);
-  String word = "LIFE LEFT : " + round((1.0-float(weeksLived)/float(totalWeeks))*10000.0f)/100.0f + "%"; 
+  String word = "LIFE LEFT : " + round((1.0-float(weeksLived)/float(totalWeeks))*10000.0f)/100.0f + "%";
   text(word, width/2, floor(y+height*0.05));
 }
 
