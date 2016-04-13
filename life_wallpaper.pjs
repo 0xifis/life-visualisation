@@ -7,14 +7,14 @@ var dotCount =  0;
 var jtotalWeeks = 0,jweeksLived = 0,x = 0,y = 0,padding = 0,marginx = 0,marginy = 0,radius = 0;
 
 function setup() {
-  $p.size(250, 800);
+  $p.size(sessionStorage.canvasWidth, sessionStorage.canvasHeight);
   $p.background(bg);
   $p.ellipseMode($p.RADIUS);
   $p.noStroke();
   $p.frameRate(1000);
 
   jtotalWeeks = totalWeeks(82);
-  jweeksLived = weeksLived(31, 8, 1995);
+  jweeksLived = weeksLived(sessionStorage.day, sessionStorage.month, sessionStorage.year);
 
   marginx = $p.floor(0.15*$p.width);
   marginy = $p.floor(0.15*$p.height);
@@ -26,9 +26,9 @@ function setup() {
   // var p = 4;
   padding = 5*p;
   radius = 2*p;
-  $p.println(jtotalWeeks);
-  $p.println(jweeksLived);
-  $p.println(p);
+  // $p.println(jtotalWeeks);
+  // $p.println(jweeksLived);
+  // $p.println(p);
 
   reset();
   var font = null;

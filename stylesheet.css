@@ -4,21 +4,7 @@ body{
     justify-content: center;
     align-items: center;
     background: #eee;
-}
-
-h1,
-h2,
-p {
-  font-family: 'Oswald', sans-serif;
-}
-
-h2 {
-  font-weight: 300;
-  margin: 0;
-}
-
-p{
-  margin-top: 0;
+    padding: 10vh 10vw 0;
 }
 
 
