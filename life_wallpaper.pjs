@@ -7,7 +7,7 @@ var dotCount =  0;
 var jtotalWeeks = 0,jweeksLived = 0,x = 0,y = 0,padding = 0,marginx = 0,marginy = 0,radius = 0;
 
 function setup() {
-  $p.size(2560, 1600);
+  $p.size(250, 800);
   $p.background(bg);
   $p.ellipseMode($p.RADIUS);
   $p.noStroke();
@@ -18,8 +18,12 @@ function setup() {
 
   marginx = $p.floor(0.15*$p.width);
   marginy = $p.floor(0.15*$p.height);
-  var p =  $p.floor($p.sqrt((0.7*$p.width*0.7*$p.height)/(totalWeeks*25)));
-  var p = 4;
+  var p =  $p.floor($p.sqrt((0.7*$p.width*0.7*$p.height)/(jtotalWeeks*25)));
+  if(p == 0){
+    alert("Please choose a larger screen resolution");
+    exit();
+  }
+  // var p = 4;
   padding = 5*p;
   radius = 2*p;
   $p.println(jtotalWeeks);
@@ -59,7 +63,7 @@ $p.reset = reset;
 function writeText() {
   $p.fill(white);
   $p.textAlign($p.CENTER);
-  var word =  "LIFE LEFT : " + $p.round((1.0-$p.parseFloat(weeksLived)/$p.parseFloat(totalWeeks))*10000.0)/100.0 + "%";
+  var word =  "LIFE LEFT : " + $p.round((1.0-$p.parseFloat(jweeksLived)/$p.parseFloat(jtotalWeeks))*10000.0)/100.0 + "%";
   $p.text(word, $p.width/2, $p.floor(y+$p.height*0.05));
 }
 $p.writeText = writeText;
