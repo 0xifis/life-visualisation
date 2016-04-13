@@ -1,0 +1,103 @@
+
+var red =  $p.color(192, 0, 24);
+var white =  $p.color(180);
+var bg =  $p.color(255);
+
+var dotCount =  0;
+var jtotalWeeks = 0,jweeksLived = 0,x = 0,y = 0,padding = 0,marginx = 0,marginy = 0,radius = 0;
+
+function setup() {
+  $p.size(sessionStorage.canvasWidth, sessionStorage.canvasHeight);
+  $p.background(bg);
+  $p.ellipseMode($p.RADIUS);
+  $p.noStroke();
+  $p.frameRate(1000);
+
+  jtotalWeeks = totalWeeks(82);
+  jweeksLived = weeksLived(sessionStorage.day, sessionStorage.month, sessionStorage.year);
+
+  marginx = $p.floor(0.15*$p.width);
+  marginy = $p.floor(0.15*$p.height);
+  var p =  $p.floor($p.sqrt((0.7*$p.width*0.7*$p.height)/(jtotalWeeks*25)));
+  if(p == 0){
+    alert("Please choose a larger screen resolution");
+    exit();
+  }
+  // var p = 4;
+  padding = 5*p;
+  radius = 2*p;
+  // $p.println(jtotalWeeks);
+  // $p.println(jweeksLived);
+  // $p.println(p);
+
+  reset();
+  var font = null;
+  font = $p.createFont("BebasNeue Bold.otf", 30);
+  $p.textFont(font, 30);
+}
+$p.setup = setup;
+
+function draw() {
+  if (dotCount == jweeksLived) {
+    $p.fill(white);
+  }
+  if (dotCount < jtotalWeeks) {
+    drawDot();
+  }
+  else {
+    writeText();
+    $p.save("life3.jpg");
+    $p.noLoop();
+  }
+  dotCount++;
+}
+$p.draw = draw;
+
+function reset() {
+  x = marginx;
+  y = marginy;
+  $p.fill(red);
+}
+$p.reset = reset;
+
+function writeText() {
+  $p.fill(white);
+  $p.textAlign($p.CENTER);
+  var word =  "LIFE LEFT : " + $p.round((1.0-$p.parseFloat(jweeksLived)/$p.parseFloat(jtotalWeeks))*10000.0)/100.0 + "%";
+  $p.text(word, $p.width/2, $p.floor(y+$p.height*0.05));
+}
+$p.writeText = writeText;
+
+function drawDot() {
+  $p.ellipse(x, y, radius, radius);
+  x += padding;
+  if (x > ($p.width-marginx)) {
+    y += padding;
+    x = marginx;
+  }
+}
+$p.drawDot = drawDot;
+
+function totalWeeks(lifespan) {
+  return $p.floor(lifespan*(52*7+1)/7);
+}
+$p.totalWeeks = totalWeeks;
+
+function weeksLived(d, m, y) {
+  var daysInMonth =  [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  var bMonth =  0;
+  for (var i =  0;  i < m;  i++) {
+    bMonth += daysInMonth[i];
+  }
+  var bYear =  $p.floor(364.25*y);
+  var birthDays =  d + bMonth + bYear;
+
+  bMonth = 0;
+  for (var i =  0;  i < month();  i++) {
+    bMonth += daysInMonth[i];
+  }
+  bYear = $p.floor(364.25*year());
+  var currentDays =  day() + bMonth + bYear;
+  return $p.floor((currentDays-birthDays)/7);
+}
+$p.weeksLived = weeksLived;

@@ -1,0 +1,13 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #eee;
+    padding: 10vh 10vw 0;
+}
+
+
+canvas {
+  max-width: 75vw;
+}
