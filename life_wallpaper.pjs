@@ -23,12 +23,11 @@ function setup() {
     alert("Please choose a larger screen resolution");
     exit();
   }
-  // var p = 4;
   padding = 5*p;
   radius = 2*p;
-  $p.println(jtotalWeeks);
-  $p.println(jweeksLived);
-  $p.println(p);
+  // $p.println(jtotalWeeks);
+  // $p.println(jweeksLived);
+  // $p.println(p);
 
   reset();
   var font = null;
